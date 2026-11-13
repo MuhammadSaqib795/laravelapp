@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+@import "flexy/variables/variables";
+
+@import "bootstrap/scss/bootstrap";
+
+@import "flexy/variables/theme-variables";
+
+@import "simplebar/dist/simplebar.css";
+@import "../css/tabler-icons/tabler-icons.css";
+
+@import "flexy/layouts/sidebar";
+@import "flexy/layouts/header";
+@import "flexy/layouts/layouts";
+@import "flexy/component/reboot";
+@import "flexy/component/card";
+@import "flexy/utilities/icon-size";
+@import "flexy/pages/dashboard1";

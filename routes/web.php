@@ -1,0 +1,162 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+Route::redirect('/about', '/test', 301);
+
+Route::view('/', 'dashboard')->name('dashboard');
+
+
+//one way to route page 
+
+// Route::get('/post', function () {
+//     return view('post');
+// });
+
+//second way to route page 
+// Route::view('/post', 'post');
+
+//php artisan for all cmd of articians
+//php artisan route -h
+//php artisan route:list
+
+//php artisan route:list --except-vendor
+
+//routing parameters
+
+// Route::get('/post/{id?}', function (string $id = null) {
+//     if ($id) {
+//         return "<h1>Post ID:" . $id . "</h1>";
+//     } else {
+//         return "<h1> NO Data Found </h1>";
+//     }
+
+// });
+
+// Route::get('/post/{id?}', function (?string $id = null) {
+//     if ($id) {
+//         return "<h1>Post ID: " . e($id) . "</h1>";
+//     }
+//     return "<h1>No Data Found</h1>";
+// });
+
+// Route::get('/post/{id}/comment/{commentid?}', function (string $id, ?string $commentid = null) {
+//     return "<h1>Post ID: " . e($id) . "</h1><h2>Comment ID: " . e($commentid ?? 'none') . "</h2>";
+// });
+
+// Route::get('/post/{id?}', function (string $id = null) {
+//     if ($id) {
+//         return '<h1>Post ID: ' . $id . '</h1>';
+//     } else {
+//         return '<h1>NO Data Found</h1>';
+//     }
+// });
+
+
+
+// constrients
+
+// Route::get('/post/{id}', function (string $id) {
+//     if ($id) {
+//         return "<h1>Post ID: " . $id . "</h1>";
+//     }
+//     return "<h1>No Data Found</h1>";
+// })->whereNumber('id');
+
+
+// for predefined value enter 
+// Route::get('/post/{id}', function (string $id) {
+//     if ($id) {
+//         return "<h1>Post ID: " . $id . "</h1>";
+//     }
+//     return "<h1>No Data Found</h1>";
+// })->whereIn('id', ['movie', 'song', 'painting']);
+
+
+// Route::get('/post/comment/{commentid?}', function (?string $commentid = null) {
+//     return "<h1>No post</h1><h2>Comment: " . e($commentid ?? 'none') . "</h2>";
+// })->whereAlpha('commentid');
+
+// Route::get('/post/{id}/comment/{commentid?}', function (string $id, ?string $commentid = null) {
+//     return "<h1>Post ID: " . e($id) . "</h1><h2>Comment: " . e($commentid ?? 'none') . "</h2>";
+// })->whereNumber('id')->whereAlpha('commentid');
+
+
+
+//Named routs to prevent changes in each file instead of change in each file
+
+Route::get('/about', function () {
+    return view('about');
+})->name('myabout');
+
+Route::get('/post', function () {
+    return view('post');
+})->name('mypost');
+
+Route::get('/test', function () {
+    return view('test');
+});
+// if all routes have group word so insteade of writing every time just write in group
+
+
+
+// Route::redirect('/myabout', '/test', 301);  //permanent redirection  
+// Route::prefix('page')->group(function () {
+//     Route::get('/about', function () {
+//         return view('about');
+//     })->name('myabout');
+
+//     Route::get('/post', function () {
+//         return view('post');
+//     })->name('mypost');
+// });
+
+
+Route::fallback(function () {
+    return "<h1>Page Not Found </h1>";
+});
+
+
+
+// for dynamic data send to the next page from routs
+
+// Route::get('/users', function () {
+//     return view('users', ['name' => 'Saqib']);
+// });
+
+
+// for sendind multiple values 
+
+// Route::get('/users', function () {
+//     return view('users', ['name' => 'Saqib', 'city' => 'multan']);
+// });
+
+
+// for passing js 
+
+
+Route::get('/users', function () {
+    // return view(
+    //     'users',
+    //     ['name' => 'Saqib', 'city' => 'multan', "js" => '<script>alert("hello Saqib");</script>']
+    // );   alternative way of doing this same work
+
+    // return view('users')->with('name','saqib')->with('city','multan');
+
+    // another more shortcut way for this
+
+    // return view('users')->withName('saqib')->withCity('multan');
+
+
+    $names = [
+        1 => ['name' => 'saqib', 'city' => 'multan', 'phone' => '03009876776'],
+        2 => ['name' => 'ali', 'city' => 'karachi', 'phone' => '030098766333'],
+        3 => ['name' => 'asif', 'city' => 'lodhran', 'phone' => '03007685432'],
+        4 => ['name' => 'saqib', 'city' => 'multan', 'phone' => '03009876776'],
+    ];
+    return view('users', [
+        'user' => $names
+    ]);
+})->name('users.index');
+
+
+Route::view('/flexy', 'dashboard')->name('flexy.dashboard');

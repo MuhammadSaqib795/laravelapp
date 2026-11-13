@@ -1,0 +1,63 @@
+// ----------------------------------------------
+// Dashboard1 Style
+// ----------------------------------------------
+
+.dashboard-summary-card {
+    height: 100%;
+}
+
+.dashboard-metric-icon {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 23px;
+}
+
+.dashboard-chart-container {
+    min-height: 300px;
+}
+
+.dashboard-product-image {
+    flex: 0 0 48px;
+    object-fit: cover;
+}
+
+.comment-widgets {
+    .comment-row {
+        background: transparent;
+
+        &:hover,
+        &.active {
+            background: rgba(0, 0, 0, 0.025);
+        }
+    }
+}
+
+.comment-text {
+
+    &:hover .comment-footer,
+    &.active .comment-footer {
+        .action-icons {
+            visibility: visible;
+        }
+    }
+}
+
+.comment-footer {
+    .action-icons {
+        visibility: hidden;
+
+        a {
+            color: var(--bs-body-color);
+
+            &:hover,
+            &.active {
+                color: var(--bs-info);
+            }
+        }
+    }
+}
